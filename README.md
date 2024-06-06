@@ -1,5 +1,10 @@
 # CDiff - The Cloudspoit Report Diffing Tool
 
+## Installation
+1. `git clone https://github.com/FWDSEC/cloudsploit-differ.git`
+2. `cd cloudsploit-differ`
+3. `python3 -m pip install .`
+
 ## Usage
 1. Dedupe the Cloudsploit reports with [The Cloudsploit Super De-duper](https://github.com/FWDSEC/cloudsploit-deduper/)
 2. `python3 cdiff.py /path/to/old-cloudsploit-report.xlsx /path/to/new-cloudsploit-report.xlsx`
