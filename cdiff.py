@@ -3,6 +3,7 @@ from os import path
 import pathlib
 import re
 import argparse
+from datetime import datetime
 
 
 outstr = ""
@@ -123,6 +124,11 @@ def confirm_files(file1, file2):
 
     return file1, file2
 
+def file_mod_date(filename):
+    mod_time = path.getmtime(filename)
+    mod_datetime = datetime.fromtimestamp(mod_time)
+    return mod_datetime.strftime('%Y-%m-%d')
+
 def main():
     file1 = args.file1
     file2 = args.file2
@@ -130,10 +136,13 @@ def main():
     file1, file2 = confirm_files(file1, file2)
 
     title_differences, resource_differences = compare_excel_files(file1, file2)
-
+    
     output("# Cloudsploit Report Comparison\n")
-    output(f"1. {path.basename(file1)}\n")
-    output(f"2. {path.basename(file2)}\n")
+
+    i=1
+    for file in [file1,file2]:
+        output(f"{i}. {path.basename(file)} - {file_mod_date(file)}\n")
+        i += 1
 
     output("\n## Title Differences:\n")
     for difference in title_differences:
